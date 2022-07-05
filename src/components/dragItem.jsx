@@ -8,6 +8,7 @@ const ItemStyle = styled.div`
     height: 500px;
     display: grid;
     place-content: center;
+    color: red;
 `
 
 export default function DragItem(){
@@ -22,7 +23,12 @@ export default function DragItem(){
     const event = e=>{
         console.log(e.type);
         console.log("SUCCESS")
-        setType(e.type)
+        if(e.type == "pinchstart") setType(e.type)
+        if(e.type == "pinchend") setType(e.type)
+        if(e.type == "pinchmove") setType(e.type)
+        if(e.type == "pinchcancel") setType(e.type)
+        if(e.type == "pinchin") setType(e.type)
+        if(e.type == "pinchout") setType(e.type)
     }
 
     //Pan dispara el evento con la mínima interración del puntero hacia la dirección permitida;

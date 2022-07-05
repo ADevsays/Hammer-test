@@ -8,7 +8,7 @@ const ItemStyle = styled.div`
     height: 500px;
     display: grid;
     place-content: center;
-    color: red;
+    color: green;
 `
 
 export default function DragItem(){
@@ -30,7 +30,7 @@ export default function DragItem(){
 
     if(hammer){
         hammer.add(new Hammer.Pan({
-            event: "swipetwo", pointers: 2, direction: "DIRECTION-ALL"
+            event: "swipetwo", pointers: 2
         }))
         hammer.on("swipetwo", event)
     }

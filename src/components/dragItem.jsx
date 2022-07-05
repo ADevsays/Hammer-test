@@ -8,7 +8,7 @@ const ItemStyle = styled.div`
     height: 500px;
     display: grid;
     place-content: center;
-    color: red;
+    color: green;
 `
 
 export default function DragItem(){

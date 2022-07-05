@@ -32,7 +32,7 @@ export default function DragItem(){
         hammer.add(new Hammer.Swipe({
             event: "swipetwo", pointers: 2, direction: "DIRECTION-ALL"
         }))
-        hammer.on("swipe" ,event)
+        hammer.on("swipetwo" ,event)
     }
 
     return(

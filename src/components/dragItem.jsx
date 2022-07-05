@@ -5,11 +5,14 @@ import Hammer from "hammerjs"
 const ItemStyle = styled.div`
     border: 2px solid black;
     text-align: center;
-    padding: 20px;
+    height: 500px;
+    display: grid;
+    place-content: center;
 `
 
 export default function DragItem(){
     const [hammer, setHammer] = useState("");
+    const [type, setType] = useState("");
     const elemento = useRef(null);
     useEffect(()=>{
         const hammer = new Hammer(elemento.current)
@@ -19,7 +22,7 @@ export default function DragItem(){
     const event = e=>{
         console.log(e.type);
         console.log("SUCCESS")
-        alert(e.type)
+        setType(e.type)
     }
 
     //Pan dispara el evento con la mínima interración del puntero hacia la dirección permitida;
@@ -34,10 +37,12 @@ export default function DragItem(){
     }
 
     return(
-        <div ref={elemento}>
-            <ItemStyle>
+        <div >
+            <ItemStyle ref={elemento}>
                 <h3>ARRÁSTRAME</h3>
             </ItemStyle>
+
+            <h3>{type}</h3>
         </div>
     );
 }

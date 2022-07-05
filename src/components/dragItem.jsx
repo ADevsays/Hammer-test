@@ -16,15 +16,12 @@ export default function DragItem(){
     const [type, setType] = useState("");
     const elemento = useRef(null);
     useEffect(()=>{
-        const hammer = new Hammer(elemento.current)
+        const hammer = new Hammer.Manager(elemento.current)
         setHammer(hammer);
     }, [elemento]);
 
     const event = e=>{
-        if(e.type == "rotatestart") setType(e.type)
-        if(e.type == "rotatemove") setType(e.type)
-        if(e.type == "rotateend") setType(e.type)
-        if(e.type == "rotatecancel") setType(e.type)
+        setType(e.type)
     }
 
     //Pan dispara el evento con la mínima interración del puntero hacia la dirección permitida;
@@ -32,11 +29,10 @@ export default function DragItem(){
     //Pinch dispara el evento cuando se "pellisca" diferenciando entre alejar y acercar los dedos
 
     if(hammer){
-        // hammer.add(new Hammer.Tap({
-        //     event: "tripletap", taps: 3
-        // }))
-        hammer.get('rotate').set({ enable: true });
-        hammer.on("rotatestart rotatemove rotateend rotatecancel" ,event)
+        hammer.add(new Hammer.Swipe({
+            event: "swipetwo", pointers: 2, direction: "DIRECTION-ALL"
+        }))
+        hammer.on("swipe" ,event)
     }
 
     return(

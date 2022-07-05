@@ -21,25 +21,19 @@ export default function DragItem(){
     }, [elemento]);
 
     const event = e=>{
-        console.log(e.type);
-        console.log("SUCCESS")
-        if(e.type == "pinchstart") setType(e.type)
-        if(e.type == "pinchend") setType(e.type)
-        if(e.type == "pinchmove") setType(e.type)
-        if(e.type == "pinchcancel") setType(e.type)
-        if(e.type == "pinchin") setType(e.type)
-        if(e.type == "pinchout") setType(e.type)
+        setType(e)
     }
 
     //Pan dispara el evento con la mínima interración del puntero hacia la dirección permitida;
     //Swipe dispara el evento cuando la interración del puntero es más rápida; 
+    //Pinch dispara el evento cuando se "pellisca" diferenciando entre alejar y acercar los dedos
 
     if(hammer){
         // hammer.add(new Hammer.Tap({
         //     event: "tripletap", taps: 3
         // }))
-        hammer.get('pinch').set({ enable: true });
-        hammer.on("pinchstart pinchend pinchmove pinchin pinchout",event)
+        hammer.get('rotate').set({ enable: true });
+        hammer.on("rotate",event)
     }
 
     return(

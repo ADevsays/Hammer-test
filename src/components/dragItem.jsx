@@ -8,7 +8,7 @@ const ItemStyle = styled.div`
     height: 500px;
     display: grid;
     place-content: center;
-    color: green;
+    color: red;
 `
 
 export default function DragItem(){
@@ -29,10 +29,10 @@ export default function DragItem(){
     //Pinch dispara el evento cuando se "pellisca" diferenciando entre alejar y acercar los dedos
 
     if(hammer){
-        hammer.add(new Hammer.Swipe({
+        hammer.add(new Hammer.Pan({
             event: "swipetwo", pointers: 2, direction: "DIRECTION-ALL"
         }))
-        hammer.on("swipetwo" ,event)
+        hammer.on("swipetwo", event)
     }
 
     return(

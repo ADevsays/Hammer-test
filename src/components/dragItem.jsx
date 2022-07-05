@@ -8,7 +8,7 @@ const ItemStyle = styled.div`
     height: 500px;
     display: grid;
     place-content: center;
-    color: green;
+    color: red;
 `
 
 export default function DragItem(){
@@ -21,7 +21,8 @@ export default function DragItem(){
     }, [elemento]);
 
     const event = e=>{
-        setType(e.type)
+        setType(e.direction)
+        console.log(e)
     }
 
     //Pan dispara el evento con la mínima interración del puntero hacia la dirección permitida;
@@ -29,11 +30,16 @@ export default function DragItem(){
     //Pinch dispara el evento cuando se "pellisca" diferenciando entre alejar y acercar los dedos
 
     if(hammer){
-        hammer.add(new Hammer.Pan({
-            event: "swipetwo", pointers: 2
+        hammer.add(new Hammer.Swipe({
+            event: "swipetwo", pointers: 2, direction: 4
         }))
         hammer.on("swipetwo", event)
     }
+
+    //Para crear un evento hay que añadir el método manager al hammer. 
+    //El método add recibe un nuevo hammer con su evento y su respectiva configuración
+    //Pointer es el número de punteros en pantalla, direction usa valores donde: 
+    //arriba es 8, de derecha a izquierda es 2, de izquierda a derecha es 4 y abajo es 16.
 
     return(
         <div >

@@ -17,13 +17,19 @@ export default function DragItem(){
     }, [elemento]);
 
     const event = e=>{
-        e.type == "panleft" ? console.log("PAN") : console.log("SWIPE! ")
-
-        
+        console.log(e.type);
+        console.log("SUCCESS")
     }
+
+    //Pan dispara el evento con la mínima interración del puntero hacia la dirección permitida;
+    //Swipe dispara el evento cuando la interración del puntero es más rápida; 
+
     if(hammer){
-        hammer.get('pan').set({ direction: Hammer.DIRECTION_ALL });
-        hammer.on("swipeleft panleft",event)
+        // hammer.add(new Hammer.Tap({
+        //     event: "tripletap", taps: 3
+        // }))
+        hammer.get('pinch').set({ enable: true });
+        hammer.on("pinch",event)
     }
 
     return(

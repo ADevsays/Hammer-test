@@ -19,6 +19,7 @@ export default function DragItem(){
     const event = e=>{
         console.log(e.type);
         console.log("SUCCESS")
+        alert(e.type)
     }
 
     //Pan dispara el evento con la mínima interración del puntero hacia la dirección permitida;

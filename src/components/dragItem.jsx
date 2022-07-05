@@ -39,7 +39,7 @@ export default function DragItem(){
         //     event: "tripletap", taps: 3
         // }))
         hammer.get('pinch').set({ enable: true });
-        hammer.on("pinch",event)
+        hammer.on("pinchstart pinchend pinchmove pinchin pinchout",event)
     }
 
     return(

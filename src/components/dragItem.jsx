@@ -21,7 +21,10 @@ export default function DragItem(){
     }, [elemento]);
 
     const event = e=>{
-        setType(e)
+        if(e.type == "rotatestart") setType(e.type)
+        if(e.type == "rotatemove") setType(e.type)
+        if(e.type == "rotateend") setType(e.type)
+        if(e.type == "rotatecancel") setType(e.type)
     }
 
     //Pan dispara el evento con la mínima interración del puntero hacia la dirección permitida;
@@ -33,7 +36,7 @@ export default function DragItem(){
         //     event: "tripletap", taps: 3
         // }))
         hammer.get('rotate').set({ enable: true });
-        hammer.on("rotate",event)
+        hammer.on("rotatestart rotatemove rotateend rotatecancel" ,event)
     }
 
     return(
